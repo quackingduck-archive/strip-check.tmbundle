@@ -1,0 +1,5 @@
+A command that saves the current file then passes the pathname to the `.check` (either in this folder or somewhere up the parent chain) for arbitrary syntax checking.
+
+The command works by overriding  ⌘S
+
+If you project doesn't have a `.check` file this command does nothing.
