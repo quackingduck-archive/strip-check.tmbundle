@@ -5,9 +5,19 @@
 	<key>beforeRunningCommand</key>
 	<string>saveActiveFile</string>
 	<key>command</key>
-	<string>echo "foo"</string>
+	<string>#!/usr/bin/env ruby
+
+def find(path)
+  return if path == '/'
+  file = path + '/.check'
+  File.exist?(file) ? file : find(File.dirname(path))
+end
+
+path = ENV['TM_FILEPATH']
+checker = find path
+puts `#{checker} #{path}` if checker</string>
 	<key>input</key>
-	<string>document</string>
+	<string>none</string>
 	<key>keyEquivalent</key>
 	<string>@s</string>
 	<key>name</key>
