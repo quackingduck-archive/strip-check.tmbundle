@@ -6,16 +6,8 @@
 	<string>saveActiveFile</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
-
-def find(path)
-  return if path == '/'
-  file = path + '/.check'
-  File.exist?(file) ? file : find(File.dirname(path))
-end
-
-path = ENV['TM_FILEPATH']
-checker = find path
-puts `#{checker} #{path}` if checker</string>
+load ENV['TM_BUNDLE_SUPPORT'] + '/check.rb'
+</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>

@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby -wKU
+
+# Move this file to ~/.check to make it the default syntax checker.
+# Or write your own. It doesn't need to be ruby, just a shell script that 
+# takes path as the only arg and writes a non-empty string to stdout if
+# the file in that path has a syntax error
+
+filename = ARGV.first
+# todo: better shell escaping
+filename = filename.inspect
+
+class String
+  def === filename
+    filename =~ /\.#{self}\"$/
+  end
+end
+
+def errors(cmd, opts = {})
+  out = `#{cmd}`
+  puts out unless out.strip == opts[:unless].to_s
+end
+
+case filename
+when 'js'
+  errors "jslint #{filename}", :unless => 'OK'
+when 'rb'
+  errors "ruby -c -- #{filename} 2>&1", :unless => "Syntax OK"
+when 'coffee'
+  errors "coffee #{filename} 2>&1"
+end
