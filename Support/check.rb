@@ -3,7 +3,7 @@
 # See: http://growl.info/documentation/applescript-support.php
 # This is still pretty much voodoo to me
 #
-# The name argument specifies the name that will appear in the "Applications" 
+# The name argument specifies the name that will appear in the "Applications"
 # tab of the Growl preferences pane.
 def RBGrowl(name, title, body, icon = 'Console')
   name, title, body, icon = [name, title, body, icon].map { |v| v.inspect }
@@ -43,8 +43,11 @@ end
 path = ENV['TM_FILEPATH']
 checker = find_checker path
 
+# report syntax errors
 if checker and growl?
   syntax_error = `#{checker} #{path.inspect}`
   RBGrowl "Syntax Checker Bundle", "Syntax Error", syntax_error unless syntax_error.empty?
 end
 
+# strip whitespace
+puts File.read(path).gsub(/[\t ]+$/, '')

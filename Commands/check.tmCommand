@@ -9,13 +9,13 @@
 load ENV['TM_BUNDLE_SUPPORT'] + '/check.rb'
 </string>
 	<key>input</key>
-	<string>none</string>
+	<string>document</string>
 	<key>keyEquivalent</key>
 	<string>@s</string>
 	<key>name</key>
 	<string>check</string>
 	<key>output</key>
-	<string>showAsTooltip</string>
+	<string>replaceDocument</string>
 	<key>uuid</key>
 	<string>01A63E5E-3230-4AC5-A896-0D1F4EBE568A</string>
 </dict>
