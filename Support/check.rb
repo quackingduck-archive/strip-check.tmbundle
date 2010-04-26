@@ -49,5 +49,5 @@ if checker and growl?
   RBGrowl "Syntax Checker Bundle", "Syntax Error", syntax_error unless syntax_error.empty?
 end
 
-# strip whitespace
-puts File.read(path).gsub(/[\t ]+$/, '')
+# # strip whitespace
+# puts File.read(path).gsub(/[\t ]+$/, '')
