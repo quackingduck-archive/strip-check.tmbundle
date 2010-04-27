@@ -1,4 +1,34 @@
-Strip Checker does two things. First it strips trailing whitespace from the current file and saves it. Then it passes the path to the current file to a user provided syntax checker.
+Strip Checker does two things. First it strips trailing whitespace from the current file and saves it. Then it passes the path of the current file to a user provided syntax checker.
+
+For example. If you've got jslint installed and you'd like to run it in its default configuration for all javascript files you might write a `.check` file that looks like:
+
+    #!/bin/bash
+
+    if [[ $1 =~ \.js$ ]]
+    then
+      out=`jslint $1`
+      if [[ $out == 'OK' ]]
+      then
+        exit
+      else
+        echo $out
+      fi
+    fi
+
+To use a different version of jslint in a specific configuration you just need to add `.check` override in the project's folder. It might be something like:
+
+    #!/usr/bin/env ruby
+
+    dir = File.dirname(File.expand_path(__FILE__))
+
+    filename = ARGV.first
+
+    if filename =~ /\.js$/
+      errors = `#{dir}/vendor/jslint/jslint.js --options-file #{dir}/config/jslint_options.js #{filename}`
+      puts errors unless errors.chomp == "jslint: no errors found!"
+    else
+      exit(1)
+    end
 
 The way the syntax checking works is that Strip Checker looks for an executable called `.check` first in the current folder, then all the way up the parent chain. Once it finds that executable, it's run with the current path as the first and only argument. If the checker returns a non-empty string, that string is shown in a growl message with the title "Syntax Error". If the checker exits with a non-zero status, strip checker will ignore that result and try the next checker up the chain.
 
