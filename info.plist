@@ -3,7 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Project Check</string>
+	<string>Strip Check</string>
+	<key>ordering</key>
+	<array>
+		<string>CE0BAB77-915A-48BB-80F1-845B7DA7B279</string>
+	</array>
 	<key>uuid</key>
 	<string>FC5F12CA-37D2-4414-9F92-3CEB2B0287C0</string>
 </dict>

@@ -1,5 +1,3 @@
-# I gisted this bad boy: http://gist.github.com/379866
-
 # See: http://growl.info/documentation/applescript-support.php
 # This is still pretty much voodoo to me
 #
@@ -29,6 +27,7 @@ def RBGrowl(name, title, body, icon = 'Console')
   end tell}
   system 'osascript', '-e', ascript
 end
+# The above also available here: http://gist.github.com/379866
 
 def growl?
   not `ps aux`.lines.grep(/GrowlHelper/).empty?
@@ -48,6 +47,3 @@ if checker and growl?
   syntax_error = `#{checker} #{path.inspect}`
   RBGrowl "Syntax Checker Bundle", "Syntax Error", syntax_error unless syntax_error.empty?
 end
-
-# # strip whitespace
-# puts File.read(path).gsub(/[\t ]+$/, '')

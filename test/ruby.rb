@@ -1,2 +1,2 @@
 def foo
-end""
+end''
