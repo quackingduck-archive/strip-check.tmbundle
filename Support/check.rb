@@ -33,17 +33,20 @@ def growl?
   not `ps aux`.lines.grep(/GrowlHelper/).empty?
 end
 
-def find_checker(path)
-  return if path == '/'
-  file = path + '/.check'
-  File.exist?(file) ? file : find_checker(File.dirname(path))
+def check(path, dir = nil)
+  dir ||= File.dirname(path)
+  return '' if dir == '/'
+  checker = dir + '/.check'
+  if File.exists? checker
+    # probably should use real shell escaping here
+    errors = `#{checker.inspect} #{path.inspect}`
+    $?.success? ? errors : check(path, File.dirname(dir))
+  else
+    check(path, File.dirname(dir))
+  end
 end
 
-path = ENV['TM_FILEPATH']
-checker = find_checker path
-
-# report syntax errors
-if checker and growl?
-  syntax_error = `#{checker} #{path.inspect}`
-  RBGrowl "Syntax Checker Bundle", "Syntax Error", syntax_error unless syntax_error.empty?
+if growl?
+  errors = check ENV['TM_FILEPATH']
+  RBGrowl "Syntax Checker Bundle", "Syntax Error", errors unless errors.empty?
 end
