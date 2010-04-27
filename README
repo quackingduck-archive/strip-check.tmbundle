@@ -1,6 +1,6 @@
 Strip Checker does two things. First it strips trailing whitespace from the current file and saves it. Then it passes the path to the current file to a user provided syntax checker.
 
-The way the syntax checking works is that Strip Checker looks for an executable called `.check` first in the current folder, then all the way up the parent chain. Once it finds that executable, it executes it passing the current path as the first and only argument. If the checker returns a non-empty string, that string is shown in a growl message with the title "Syntax Error".
+The way the syntax checking works is that Strip Checker looks for an executable called `.check` first in the current folder, then all the way up the parent chain. Once it finds that executable, it's run with the current path as the first and only argument. If the checker returns a non-empty string, that string is shown in a growl message with the title "Syntax Error". If the checker exits with a non-zero status, strip checker will ignore that result and try the next checker up the chain.
 
 An example checker (this is the one I have in ~/.check) is included as `check.example`
 
