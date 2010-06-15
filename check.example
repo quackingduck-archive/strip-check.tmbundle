@@ -26,5 +26,5 @@ when 'js'
 when 'rb'
   errors "ruby -c -- #{filename} 2>&1", :unless => "Syntax OK"
 when 'coffee'
-  errors "coffee #{filename} 2>&1"
+  errors "coffee -cp #{filename} 2>&1 > /dev/null"
 end
