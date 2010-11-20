@@ -67,6 +67,8 @@ load ENV['TM_BUNDLE_SUPPORT'] + '/check.rb'</string>
 	<string>@s</string>
 	<key>name</key>
 	<string>Strip Check</string>
+	<key>scope</key>
+	<string>source</string>
 	<key>uuid</key>
 	<string>6F086CF7-EE6F-4AD7-8238-D204EF30F331</string>
 </dict>
