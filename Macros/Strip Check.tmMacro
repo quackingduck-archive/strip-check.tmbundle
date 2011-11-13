@@ -4,6 +4,7 @@
 <dict>
 	<key>commands</key>
 	<array>
+    <!-- strip whitespace (with perl) -->
 		<dict>
 			<key>argument</key>
 			<dict>
@@ -25,6 +26,7 @@
 			<key>command</key>
 			<string>executeCommandWithOptions:</string>
 		</dict>
+    <!-- Save -->
 		<dict>
 			<key>argument</key>
 			<dict>
@@ -42,6 +44,7 @@
 			<key>command</key>
 			<string>executeCommandWithOptions:</string>
 		</dict>
+    <!-- Run syntax checker -->
 		<dict>
 			<key>argument</key>
 			<dict>
